@@ -57,16 +57,17 @@ class Cat(Animal):
         return f"{self.name} says: Meow!"
 
 
+import math
+
+
 # ---------- Class method & static method ----------
 class MathHelper:
     """Utility class demonstrating class/static methods."""
 
-    PI = 3.14159
-
     @classmethod
     def circle_area(cls, radius):
-        """Calculate area of a circle using the class-level PI constant."""
-        return cls.PI * radius ** 2
+        """Calculate area of a circle using math.pi."""
+        return math.pi * radius ** 2
 
     @staticmethod
     def is_even(n):

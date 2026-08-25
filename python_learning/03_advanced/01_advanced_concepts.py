@@ -25,12 +25,15 @@ def retry(max_attempts=3):
     """Decorator factory: retry a function up to max_attempts times on exception."""
     def decorator(func):
         def wrapper(*args, **kwargs):
+            last_exc = None
             for attempt in range(1, max_attempts + 1):
                 try:
                     return func(*args, **kwargs)
                 except Exception as exc:  # noqa: BLE001
+                    last_exc = exc
                     print(f"  attempt {attempt} failed: {exc}")
-            return None
+            print(f"All {max_attempts} attempts failed.")
+            raise last_exc
         return wrapper
     return decorator
 
